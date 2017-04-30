@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "64064166833",
+    "firebase_url": "https://servicosdesaude-3f4cc.firebaseio.com",
+    "project_id": "servicosdesaude-3f4cc",
+    "storage_bucket": "servicosdesaude-3f4cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64064166833:android:f7763717088f4f83",
+        "android_client_info": {
+          "package_name": "tech.linard.android.serviosdesade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "64064166833-o8manr738ekah2kov7gejcme8fpglofb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.linard.android.serviosdesade",
+            "certificate_hash": "99b0af9ee3abbad81a498c5fae53f5525fcf9c2e"
+          }
+        },
+        {
+          "client_id": "64064166833-e26gtbv1t4m321crsk3a61g01rovm5pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPXH4po_F1_vo2IVmSCqZTcE97ATNVXRk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "64064166833-e26gtbv1t4m321crsk3a61g01rovm5pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

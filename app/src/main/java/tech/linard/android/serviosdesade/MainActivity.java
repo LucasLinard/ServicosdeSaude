@@ -99,8 +99,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            String url = "http://mobile-aceite.tcu.gov.br:80/mapa-da-saude/rest/estabelecimentos?quantidade=30&api_key=446";
-            fetchEstabelecimentosFormNetwork(url);
+            
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -115,26 +114,4 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    void fetchEstabelecimentosFormNetwork(String url) {
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
-                url,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this, "Volley ERROR!",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-        VolleySingleton.getInstance(this).addToRequestQueue(jsonArrayRequest);
-
-    }
-
 }

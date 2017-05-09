@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="estados">
+        <item>UF</item>
+        <item>AC</item>
+        <item>AL</item>
+        <item>AP</item>
+        <item>AM</item>
+        <item>BA</item>
+        <item>CE</item>
+        <item>DF</item>
+        <item>ES</item>
+        <item>GO</item>
+        <item>MA</item>
+        <item>MT</item>
+        <item>MS</item>
+        <item>MG</item>
+        <item>PA</item>
+        <item>PB</item>
+        <item>PR</item>
+        <item>PE</item>
+        <item>PI</item>
+        <item>RJ</item>
+        <item>RN</item>
+        <item>RS</item>
+        <item>RO</item>
+        <item>RR</item>
+        <item>SC</item>
+        <item>SP</item>
+        <item>SE</item>
+        <item>TO</item>
+    </string-array>
+
+    <string-array name="categorias">
+        <item>CATEGORIA</item>
+        <item>APOIO À SAÚDE</item>
+        <item>ATENÇÃO ESPECÍFICA</item>
+        <item>ATENDIMENTO DOMICILIAR</item>
+        <item>CLÍNICA</item>
+        <item>CONSULTÓRIO</item>
+        <item>FARMÁCIA</item>
+        <item>HOSPITAL</item>
+        <item>LABORATÓRIO</item>
+        <item>POSTO DE SAÚDE</item>
+        <item>SAMU</item>
+        <item>UNIDADE ADMINISTRATIVA</item>
+        <item>URGÊNCIA</item>
+    </string-array>
+
+    <string-array name="especialidades">
+        <item>ESPECIALIDADE</item>
+        <item>ATENCAO A OBESIDADE GRAVE</item>
+        <item>ATENCAO A SAUDE AUDITIVA</item>
+        <item>ATENCAO A SAUDE BUCAL</item>
+        <item>ATENCAO A SAUDE MENTAL</item>
+        <item>ATENCAO A SAUDE OCULAR</item>
+        <item>ATENCAO AO IDOSO</item>
+        <item>CARDIOVASCULAR</item>
+        <item>CUIDADOS PROLONGADOS</item>
+        <item>DOR CRONICA</item>
+        <item>DST/AIDS</item>
+        <item>HOSPITAL DIA</item>
+        <item>INTERNACAO DOMICILIAR</item>
+        <item>MATERNO INFANTIL</item>
+        <item>NEFROLOGIA</item>
+        <item>NEUROLOGIA/NEUROCIRURGIA</item>
+        <item>ONCOLOGIA</item>
+        <item>OSTEOGENESIS IMPERFECTA</item>
+        <item>PLANEJAMENTO FAMILIAR/ESTERELIZACAO</item>
+        <item>PNEUMOLOGIA</item>
+        <item>PROGRAMA DA MAMOGRAFIA MÓVEL</item>
+        <item>QUEIMADOS</item>
+        <item>REABILITACAO</item>
+        <item>TERAPIA NUTRICIONAL</item>
+        <item>TRANSEXUALIZADOR</item>
+        <item>TRANSPLANTES</item>
+        <item>TRAUMATO-ORTOPEDIA</item>
+        <item>UNIDADE DE CUIDADOS INTERMEDIARIOS NEONATAL</item>
+        <item>UNIDADE TERAPIA INTENSIVA</item>
+        <item>URGENCIA</item>
+        <item>VIDEOCIRURGIAS</item>
+    </string-array>
+
+</resources>

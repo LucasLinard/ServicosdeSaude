@@ -7,4 +7,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="municipio">Município</string>
+    <string name="txt_param_pesquisa">Caso deseje, selecione os parâmetros de pesquisa e clique em Pesquisar.</string>
+    <string name="opcional">(opcional)</string>
+    <string name="vinculo_sus">Vínculo SUS</string>
 </resources>

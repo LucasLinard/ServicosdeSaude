@@ -11,6 +11,7 @@ import tech.linard.android.serviosdesade.model.Estabelecimento;
  */
 
 public class JSONUtils {
+
     public static Estabelecimento jsonToEstabelecimento(JSONObject jsonObject) {
         Estabelecimento currentEstabelecimento = new Estabelecimento();
 

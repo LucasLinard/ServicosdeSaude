@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tech.linard.android.serviosdesade.SearchEstabelecimentos">
+    tools:context="tech.linard.android.serviosdesade.activities.SearchEstabelecimentos">
 
     <TextView
         android:id="@+id/txt_pram_psq"

@@ -1,4 +1,4 @@
-package tech.linard.android.serviosdesade;
+package tech.linard.android.serviosdesade.activities;
 
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 
 import org.json.JSONArray;
 
+import tech.linard.android.serviosdesade.R;
 import tech.linard.android.serviosdesade.utils.VolleySingleton;
 
 public class SearchEstabelecimentos extends AppCompatActivity

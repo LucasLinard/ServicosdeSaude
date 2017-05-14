@@ -10,4 +10,7 @@
     <string name="txt_param_pesquisa">Caso deseje, selecione os parâmetros de pesquisa e clique em Pesquisar.</string>
     <string name="opcional">(opcional)</string>
     <string name="vinculo_sus">Vínculo SUS</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

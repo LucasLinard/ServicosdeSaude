@@ -33,10 +33,10 @@ public class EstabelecimentoContract  {
         public static final String TABLE_NAME = "estabelecimento";
 
         // Colunas
-        public static final String COLUMN_COD_CNES = "codCnes";
-
         // chave primaria da tabela
         public static final String COLUMN_COD_UNIDADE  =   "codUnidade";
+
+        public static final String COLUMN_COD_CNES = "codCnes";
         public static final String COLUMN_COD_IBGE  =  "codIbge" ;
         public static final String COLUMN_NOME_FANTASIA =  "nomeFantasia";
         public static final String COLUMN_NATUREZA =  "natureza";
@@ -82,6 +82,9 @@ public class EstabelecimentoContract  {
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ESPECIALIDADE;
 
+        // Table name
+        public static final String TABLE_NAME = "especialidade";
+
         // Chave estrangeira tabela referencia COLUMN_COD_UNIDADE em estabelecimento
         public static final String COLUMN_ESPECIALIDADE_ID = "especialidade_id";
         public static final String COLUMN_COD_UNIDADE =  "codUnidade";
@@ -102,6 +105,9 @@ public class EstabelecimentoContract  {
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PROFISSIONAL;
 
+        // Table name
+        public static final String TABLE_NAME = "profissional";
+
         public static final String COLUMN_COD_UNIDADE =  "codUnidade";
         public static final String COLUMN_DESCRICAO_ATIVIDADE_PROFISSIONAL
                 =  "descricaoAtividadeProfissional";
@@ -121,17 +127,17 @@ public class EstabelecimentoContract  {
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SERVICO;
 
+        // Table name
+        public static final String TABLE_NAME = "servico";
+
         public static final String COLUMN_COD_UNIDADE =  "codUnidade";
         public static final String COLUMN_DESCRICAO_CLASSIFICACAO_SERVICO
                 =  "descricaoClassificacaoServico";
         public static final String COLUMN_DESCRICAO
                 =  "descricao";
 
-
         public static Uri buildServicoUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }
-
-
 }

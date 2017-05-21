@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 
@@ -33,7 +35,7 @@ import tech.linard.android.serviosdesade.utils.VolleySingleton;
  */
 public class SearchFragment extends Fragment
 
-implements View.OnClickListener {
+        implements View.OnClickListener {
     private final String BASE_URL_ESTABELECIMENTOS =
             "http://mobile-aceite.tcu.gov.br:80/mapa-da-saude/rest/estabelecimentos?";
 
@@ -41,6 +43,8 @@ implements View.OnClickListener {
     Spinner spinnerEspecialidades;
     Spinner spinnerCategorias;
     Button btnBusca;
+    CheckBox checkBoxVinculoSus;
+    int contadorDeSucesso = 1;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -103,9 +107,14 @@ implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         configureSpinners();
+
         btnBusca = (Button) getActivity().findViewById(R.id.btn_search_estabelecimento);
         btnBusca.setOnClickListener(this);
+
+        checkBoxVinculoSus = (CheckBox) getActivity().findViewById(R.id.chk_txt_vinculo_sus);
+        checkBoxVinculoSus.setOnClickListener(this);
 
     }
 
@@ -174,14 +183,15 @@ implements View.OnClickListener {
     }
 
     void startSearch(){
-        String mURL = getEstabelecimentosURL();
-
-        if (mURL != null) {
-            fetchEstabelecimentosFormNetwork(mURL);
+        for (int pagina = 0; pagina <= 10; pagina++) {
+            String mURL = getEstabelecimentosURL(pagina);
+            if (mURL != null) {
+                fetchEstabelecimentosFormNetwork(mURL);
+            }
         }
     }
 
-    String getEstabelecimentosURL(){
+    String getEstabelecimentosURL(int pagina){
         String url = null;
 
         String prmMunicipio = "";
@@ -206,18 +216,28 @@ implements View.OnClickListener {
         } else {
             prmEspecialidade = "";
         }
+        String prmVinculoSUS = "";
 
-        String prmViculoSUS = "";
-        String prmPagina = "1";
+        if (checkBoxVinculoSus.isChecked()) {
+            prmVinculoSUS = "sim";
+        } else {
+            prmVinculoSUS = "";
+        }
+
+        //TODO: store and recover this value on sharedPrefs
+        int quantidade = 10;
+
+        String prmQuantidade = String.valueOf(quantidade);
+        String prmPagina = String.valueOf(pagina);
 
         Uri baseUri = Uri.parse(BASE_URL_ESTABELECIMENTOS);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        uriBuilder.appendQueryParameter("quantidade", "30");
+        uriBuilder.appendQueryParameter("quantidade", prmQuantidade);
         uriBuilder.appendQueryParameter("municipio", prmMunicipio);
         uriBuilder.appendQueryParameter("uf", prmUf);
         uriBuilder.appendQueryParameter("categoria", prmCategoria);
         uriBuilder.appendQueryParameter("especialidade", prmEspecialidade);
-        uriBuilder.appendQueryParameter("vinculoSus", prmViculoSUS);
+        uriBuilder.appendQueryParameter("vinculoSus", prmVinculoSUS);
         uriBuilder.appendQueryParameter("pagina", prmPagina);
 
         // todo: Alterar API_KEY - Save value in gradle properties.
@@ -235,7 +255,10 @@ implements View.OnClickListener {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(getActivity(), "SUCESS!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "SUCESS!"
+                                 + String.valueOf(contadorDeSucesso)
+                                , Toast.LENGTH_SHORT).show();
+                        contadorDeSucesso++;
                     }
                 }, new Response.ErrorListener() {
             @Override

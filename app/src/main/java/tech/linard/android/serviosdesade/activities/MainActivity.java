@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
 
         switch (itemId) {
-            case R.id.nav_camera:
+            case R.id.nav_search:
+                fragment = new SearchFragment();
                 break;
             case R.id.nav_gallery:
-                fragment = new SearchFragment();
                 break;
             case R.id.nav_slideshow:
                 break;

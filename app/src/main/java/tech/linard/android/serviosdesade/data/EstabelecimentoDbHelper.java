@@ -23,7 +23,6 @@ public class EstabelecimentoDbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -64,11 +63,13 @@ public class EstabelecimentoDbHelper extends SQLiteOpenHelper {
                 EstabelecimentoEntry.COLUMN_LONG + " REAL," +
                 EstabelecimentoEntry.COLUMN_TELEFONE + " TEXT," +
                 EstabelecimentoEntry.COLUMN_CNPJ + " TEXT" +
+                " UNIQUE ( " + EstabelecimentoEntry.COLUMN_COD_UNIDADE + " ) " +
+                " ON CONFLICT REPLACE" +
                 " );";
 
         final String SQL_CREATE_ESPECIALIDADE_TABLE = "CREATE TABLE " +
                 EspecialidadeEntry.TABLE_NAME + " (" +
-                EspecialidadeEntry.COLUMN_ESPECIALIDADE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                EspecialidadeEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 EspecialidadeEntry.COLUMN_COD_UNIDADE + " INTEGER NOT NULL," +
                 EspecialidadeEntry.COLUMN_DESCRICAO_GRUPO + " TEXT," +
                 EspecialidadeEntry.COLUMN_DESCRICAO_HABILITACAO + " TEXT," +
@@ -102,7 +103,6 @@ public class EstabelecimentoDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_ESPECIALIDADE_TABLE);
         db.execSQL(SQL_CREATE_SERVICO_TABLE);
         db.execSQL(SQL_CREATE_PROFISSIONAL_TABLE);
-
     }
 
     @Override

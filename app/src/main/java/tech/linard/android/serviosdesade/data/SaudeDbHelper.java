@@ -65,42 +65,8 @@ public class SaudeDbHelper extends SQLiteOpenHelper {
                 " ON CONFLICT REPLACE" +
                 " );";
 
-        final String SQL_CREATE_ESPECIALIDADE_TABLE = "CREATE TABLE " +
-                EspecialidadeEntry.TABLE_NAME + " (" +
-                EspecialidadeEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                EspecialidadeEntry.COLUMN_COD_UNIDADE + " INTEGER NOT NULL," +
-                EspecialidadeEntry.COLUMN_DESCRICAO_GRUPO + " TEXT," +
-                EspecialidadeEntry.COLUMN_DESCRICAO_HABILITACAO + " TEXT," +
-                " FOREIGN KEY (" + EspecialidadeEntry.COLUMN_COD_UNIDADE + ") REFERENCES " +
-                EstabelecimentoEntry.TABLE_NAME +
-                " (" + EstabelecimentoEntry.COLUMN_COD_UNIDADE + "), "
-                + " );";
-
-        final String SQL_CREATE_SERVICO_TABLE  =  "CREATE TABLE " +
-                ServicoEntry.TABLE_NAME + " (" +
-                ServicoEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                ServicoEntry.COLUMN_COD_UNIDADE + " INTEGER NOT NULL," +
-                ServicoEntry.COLUMN_DESCRICAO + " TEXT," +
-                ServicoEntry.COLUMN_DESCRICAO_CLASSIFICACAO_SERVICO + " TEXT," +
-                " FOREIGN KEY (" + ServicoEntry.COLUMN_COD_UNIDADE + ") REFERENCES " +
-                EstabelecimentoEntry.TABLE_NAME +
-                " (" + EstabelecimentoEntry.COLUMN_COD_UNIDADE + "), "
-                + " );";
-
-        final String SQL_CREATE_PROFISSIONAL_TABLE = "CREATE TABLE " +
-                ProfisionalEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                ProfisionalEntry.COLUMN_COD_UNIDADE + " INTEGER NOT NULL," +
-                ProfisionalEntry.COLUMN_DESCRICAO_ATIVIDADE_PROFISSIONAL + " TEXT," +
-                ProfisionalEntry.COLUMN_QUANTIDADE_PROFISSIONAIS + " TEXT," +
-                " FOREIGN KEY (" + ProfisionalEntry.COLUMN_COD_UNIDADE + ") REFERENCES " +
-                EstabelecimentoEntry.TABLE_NAME +
-                " (" + EstabelecimentoEntry.COLUMN_COD_UNIDADE + "), "
-                + " );";
 
         db.execSQL(SQL_CREATE_ESTABELECIMENTO_TABLE);
-        db.execSQL(SQL_CREATE_ESPECIALIDADE_TABLE);
-        db.execSQL(SQL_CREATE_SERVICO_TABLE);
-        db.execSQL(SQL_CREATE_PROFISSIONAL_TABLE);
     }
 
     @Override

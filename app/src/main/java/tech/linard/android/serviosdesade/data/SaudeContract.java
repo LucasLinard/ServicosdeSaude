@@ -9,7 +9,7 @@ import android.provider.BaseColumns;
  * Created by lucas on 16/05/2017.
  */
 
-public class EstabelecimentoContract  {
+public class SaudeContract {
 
     public static final String CONTENT_AUTHORITY = "tech.linard.android.serviosdesade";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);

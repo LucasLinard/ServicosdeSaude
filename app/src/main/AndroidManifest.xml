@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".data.SaudeProvider"
+            android:authorities="tech.linard.android.serviosdesade"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>

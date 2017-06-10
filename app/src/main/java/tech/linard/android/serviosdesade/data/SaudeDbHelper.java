@@ -4,22 +4,20 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import tech.linard.android.serviosdesade.data.EstabelecimentoContract.EstabelecimentoEntry;
+import tech.linard.android.serviosdesade.data.SaudeContract.EstabelecimentoEntry;
 
-import tech.linard.android.serviosdesade.model.Estabelecimento;
-
-import static tech.linard.android.serviosdesade.data.EstabelecimentoContract.*;
+import static tech.linard.android.serviosdesade.data.SaudeContract.*;
 
 /**
  * Created by lucas on 21/05/2017.
  */
 
-public class EstabelecimentoDbHelper extends SQLiteOpenHelper {
+public class SaudeDbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     static final String DATABASE_NAME = "estabelecimento.db";
 
 
-    public EstabelecimentoDbHelper (Context context) {
+    public SaudeDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

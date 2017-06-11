@@ -189,7 +189,7 @@ public class SearchFragment extends Fragment
 
     void startSearch(){
         //TODO: VERIFICAR TAMANHO ÓTIMO DA PESQUISA (QUANTIDADE POR PESQUISA E DE TENTATIVAS)
-        for (int pagina = 0; pagina < 1; pagina++) {
+        for (int pagina = 0; pagina < 10; pagina++) {
             String mURL = getEstabelecimentosURL(pagina);
             if (mURL != null) {
                 fetchEstabelecimentosFormNetwork(mURL);
@@ -278,7 +278,6 @@ public class SearchFragment extends Fragment
                             }
                         }
 
-                        contadorDeSucesso++;
                     }
                 }, new Response.ErrorListener() {
             @Override

@@ -6,8 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import tech.linard.android.serviosdesade.data.SaudeContract.EstabelecimentoEntry;
 
-import static tech.linard.android.serviosdesade.data.SaudeContract.*;
-
 /**
  * Created by lucas on 21/05/2017.
  */
@@ -73,9 +71,6 @@ public class SaudeDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
-        db.execSQL(" DROP TABLE IF EXISTS " + ProfisionalEntry.TABLE_NAME);
-        db.execSQL(" DROP TABLE IF EXISTS " + ServicoEntry.TABLE_NAME);
-        db.execSQL(" DROP TABLE IF EXISTS " + EspecialidadeEntry.TABLE_NAME);
         db.execSQL(" DROP TABLE IF EXISTS " + EstabelecimentoEntry.TABLE_NAME);
         onCreate(db);
     }

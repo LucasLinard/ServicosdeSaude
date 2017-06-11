@@ -21,45 +21,44 @@ public class SaudeDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         // Criar tabela para armezenar cache de estabelecimentos pesquisados
         // utilizando API do TCU. O tipo dos campos reflete, na medida do possível,
         // o retorno da API.
 
         final String SQL_CREATE_ESTABELECIMENTO_TABLE = "CREATE TABLE " +
-                EstabelecimentoEntry.TABLE_NAME + " (" +
-                EstabelecimentoEntry.COLUMN_COD_UNIDADE +  " INTEGER PRIMARY KEY," +
-                EstabelecimentoEntry.COLUMN_COD_IBGE + " INTEGER," +
-                EstabelecimentoEntry.COLUMN_COD_CNES + " INTEGER," +
-                EstabelecimentoEntry.COLUMN_NOME_FANTASIA + " TEXT," +
-                EstabelecimentoEntry.COLUMN_NATUREZA + " TEXT," +
-                EstabelecimentoEntry.COLUMN_TIPO_UNIDADE + " TEXT," +
-                EstabelecimentoEntry.COLUMN_ESFERA_ADMINISTRATIVA + " TEXT," +
-                EstabelecimentoEntry.COLUMN_VINCULO_SUS +
-                EstabelecimentoEntry.COLUMN_RETENCAO + " TEXT," +
-                EstabelecimentoEntry.COLUMN_FLUXO_CLIENTELA + " TEXT," +
-                EstabelecimentoEntry.COLUMN_ORIGEM_GEOGRAFICA + " TEXT," +
-                EstabelecimentoEntry.COLUMN_TEM_ATENDIMENTO_URGENCIA + " INTEGER NOT NULL," +
-                EstabelecimentoEntry.COLUMN_TEM_ATENDIMENTO_AMBULATORIAL + " INTEGER NOT NULL," +
-                EstabelecimentoEntry.COLUMN_TEM_CENTRO_CIRURGICO + " INTEGER NOT NULL," +
-                EstabelecimentoEntry.COLUMN_TEM_OBSTETRA + " INTEGER NOT NULL," +
-                EstabelecimentoEntry.COLUMN_TEM_NEONATAL + " INTEGER NOT NULL," +
-                EstabelecimentoEntry.COLUMN_TEM_DIALISE + " INTEGER NOT NULL," +
-                EstabelecimentoEntry.COLUMN_DESCRICAO_COMPLETA + " TEXT," +
-                EstabelecimentoEntry.COLUMN_TIPO_UNIDADE_CNES + " TEXT," +
-                EstabelecimentoEntry.COLUMN_CATEGORIA_UNIDADE + " TEXT," +
-                EstabelecimentoEntry.COLUMN_LOGRADOURO + " TEXT," +
-                EstabelecimentoEntry.COLUMN_NUMERO + " TEXT," +
-                EstabelecimentoEntry.COLUMN_BAIRRO + " TEXT," +
-                EstabelecimentoEntry.COLUMN_CIDADE + " TEXT," +
-                EstabelecimentoEntry.COLUMN_UF + " TEXT," +
-                EstabelecimentoEntry.COLUMN_CEP + " TEXT," +
-                EstabelecimentoEntry.COLUMN_TURNO_ATENDIMENTO + " TEXT," +
-                EstabelecimentoEntry.COLUMN_LAT + " REAL," +
-                EstabelecimentoEntry.COLUMN_LONG + " REAL," +
-                EstabelecimentoEntry.COLUMN_TELEFONE + " TEXT," +
-                EstabelecimentoEntry.COLUMN_CNPJ + " TEXT" +
-                " UNIQUE ( " + EstabelecimentoEntry.COLUMN_COD_UNIDADE + " ) " +
+                EstabelecimentoEntry.TABLE_NAME + "(" +
+                EstabelecimentoEntry.COLUMN_COD_UNIDADE +  " INTEGER PRIMARY KEY, " +
+                EstabelecimentoEntry.COLUMN_COD_IBGE + " INTEGER, " +
+                EstabelecimentoEntry.COLUMN_COD_CNES + " INTEGER, " +
+                EstabelecimentoEntry.COLUMN_NOME_FANTASIA + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_NATUREZA + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_TIPO_UNIDADE + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_ESFERA_ADMINISTRATIVA + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_VINCULO_SUS + " INTEGER NOT NULL, " +
+                EstabelecimentoEntry.COLUMN_RETENCAO + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_FLUXO_CLIENTELA + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_ORIGEM_GEOGRAFICA + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_TEM_ATENDIMENTO_URGENCIA + " INTEGER NOT NULL, " +
+                EstabelecimentoEntry.COLUMN_TEM_ATENDIMENTO_AMBULATORIAL + " INTEGER NOT NULL, " +
+                EstabelecimentoEntry.COLUMN_TEM_CENTRO_CIRURGICO + " INTEGER NOT NULL, " +
+                EstabelecimentoEntry.COLUMN_TEM_OBSTETRA + " INTEGER NOT NULL, " +
+                EstabelecimentoEntry.COLUMN_TEM_NEONATAL + " INTEGER NOT NULL, " +
+                EstabelecimentoEntry.COLUMN_TEM_DIALISE + " INTEGER NOT NULL, " +
+                EstabelecimentoEntry.COLUMN_DESCRICAO_COMPLETA + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_TIPO_UNIDADE_CNES + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_CATEGORIA_UNIDADE + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_LOGRADOURO + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_NUMERO + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_BAIRRO + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_CIDADE + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_UF + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_CEP + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_TURNO_ATENDIMENTO + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_LAT + " REAL, " +
+                EstabelecimentoEntry.COLUMN_LONG + " REAL, " +
+                EstabelecimentoEntry.COLUMN_TELEFONE + " TEXT, " +
+                EstabelecimentoEntry.COLUMN_CNPJ + " TEXT, " +
+                " UNIQUE (" + EstabelecimentoEntry.COLUMN_COD_UNIDADE + ") " +
                 " ON CONFLICT REPLACE" +
                 " );";
 

@@ -32,7 +32,6 @@ public class SaudeContract {
         // Colunas
         // chave primaria da tabela
         public static final String COLUMN_COD_UNIDADE  =   "codUnidade";
-
         public static final String COLUMN_COD_CNES = "codCnes";
         public static final String COLUMN_COD_IBGE  =  "codIbge" ;
         public static final String COLUMN_NOME_FANTASIA =  "nomeFantasia";

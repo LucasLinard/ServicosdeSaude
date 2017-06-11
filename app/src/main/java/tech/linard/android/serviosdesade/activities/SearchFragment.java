@@ -1,5 +1,6 @@
 package tech.linard.android.serviosdesade.activities;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,11 +19,14 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import tech.linard.android.serviosdesade.R;
+import tech.linard.android.serviosdesade.data.SaudeContract.EstabelecimentoEntry;
+import tech.linard.android.serviosdesade.model.Estabelecimento;
+import tech.linard.android.serviosdesade.utils.JSONUtils;
 import tech.linard.android.serviosdesade.utils.VolleySingleton;
 
 /**
@@ -182,8 +186,10 @@ public class SearchFragment extends Fragment
         void onFragmentInteraction(Uri uri);
     }
 
+
     void startSearch(){
-        for (int pagina = 0; pagina <= 10; pagina++) {
+        //TODO: VERIFICAR TAMANHO ÓTIMO DA PESQUISA (QUANTIDADE POR PESQUISA E DE TENTATIVAS)
+        for (int pagina = 0; pagina < 1; pagina++) {
             String mURL = getEstabelecimentosURL(pagina);
             if (mURL != null) {
                 fetchEstabelecimentosFormNetwork(mURL);
@@ -225,7 +231,7 @@ public class SearchFragment extends Fragment
         }
 
         //TODO: store and recover this value on sharedPrefs
-        int quantidade = 10;
+        int quantidade = 30;
 
         String prmQuantidade = String.valueOf(quantidade);
         String prmPagina = String.valueOf(pagina);
@@ -249,15 +255,29 @@ public class SearchFragment extends Fragment
     }
     void fetchEstabelecimentosFormNetwork(String url) {
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
+        final JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
                 url,
                 null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(getActivity(), "SUCESS!"
-                                 + String.valueOf(contadorDeSucesso)
-                                , Toast.LENGTH_SHORT).show();
+                        for (int x=0; x<response.length(); x++) {
+                            JSONObject jsonObject = response.optJSONObject(x);
+                            Estabelecimento currentEstabelecimento = JSONUtils
+                                    .jsonToEstabelecimento(jsonObject);
+                            ContentValues contentValues =
+                                    gravaContentValues(currentEstabelecimento);
+
+                            Uri newUri = getActivity()
+                                    .getContentResolver()
+                                    .insert(EstabelecimentoEntry.CONTENT_URI, contentValues);
+                            if (newUri == null) {
+                                // If the new content URI is null, then there was an error with insertion.
+                                Toast.makeText(getContext(), "FAILED TO INSERT",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
                         contadorDeSucesso++;
                     }
                 }, new Response.ErrorListener() {
@@ -267,6 +287,74 @@ public class SearchFragment extends Fragment
             }
         });
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonArrayRequest);
+    }
+
+    private ContentValues gravaContentValues(Estabelecimento estabelecimento) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(EstabelecimentoEntry.COLUMN_COD_UNIDADE,
+                estabelecimento.getCodUnidade());
+        contentValues.put(EstabelecimentoEntry.COLUMN_COD_CNES,
+                estabelecimento.getCodCnes());
+        contentValues.put(EstabelecimentoEntry.COLUMN_COD_IBGE ,
+                estabelecimento.getCodIbge());
+        contentValues.put(EstabelecimentoEntry.COLUMN_NOME_FANTASIA,
+                estabelecimento.getNomeFantasia());
+        contentValues.put(EstabelecimentoEntry.COLUMN_NATUREZA,
+                estabelecimento.getNatureza());
+        contentValues.put(EstabelecimentoEntry.COLUMN_TIPO_UNIDADE,
+                estabelecimento.getTipoUnidade());
+        contentValues.put(EstabelecimentoEntry.COLUMN_ESFERA_ADMINISTRATIVA,
+                estabelecimento.getEsferaAdministrativa());
+        contentValues.put(EstabelecimentoEntry.COLUMN_VINCULO_SUS,
+                0);
+        contentValues.put(EstabelecimentoEntry.COLUMN_RETENCAO,
+                estabelecimento.getRetencao());
+        contentValues.put(EstabelecimentoEntry.COLUMN_FLUXO_CLIENTELA,
+                estabelecimento.getFluxoClientela());
+        contentValues.put(EstabelecimentoEntry.COLUMN_ORIGEM_GEOGRAFICA,
+                estabelecimento.getOrigemGeografica());
+        contentValues.put(EstabelecimentoEntry.COLUMN_TEM_ATENDIMENTO_URGENCIA,
+                0);
+        contentValues.put(EstabelecimentoEntry.COLUMN_TEM_ATENDIMENTO_AMBULATORIAL,
+                0);
+        contentValues.put(EstabelecimentoEntry.COLUMN_TEM_CENTRO_CIRURGICO,
+                0);
+        contentValues.put(EstabelecimentoEntry.COLUMN_TEM_OBSTETRA,
+                0);
+        contentValues.put(EstabelecimentoEntry.COLUMN_TEM_NEONATAL,
+                0);
+        contentValues.put(EstabelecimentoEntry.COLUMN_TEM_DIALISE,
+                0);
+        contentValues.put(EstabelecimentoEntry.COLUMN_DESCRICAO_COMPLETA,
+                estabelecimento.getDescricaoCompleta());
+        contentValues.put(EstabelecimentoEntry.COLUMN_TIPO_UNIDADE_CNES,
+                estabelecimento.getTipoUnidadeCnes());
+        contentValues.put(EstabelecimentoEntry.COLUMN_CATEGORIA_UNIDADE,
+                estabelecimento.getCategoriaUnidade());
+        contentValues.put(EstabelecimentoEntry.COLUMN_LOGRADOURO,
+                estabelecimento.getLogradouro());
+        contentValues.put(EstabelecimentoEntry.COLUMN_NUMERO,
+                estabelecimento.getNumero());
+        contentValues.put(EstabelecimentoEntry.COLUMN_BAIRRO,
+                estabelecimento.getBairro());
+        contentValues.put(EstabelecimentoEntry.COLUMN_CIDADE,
+                estabelecimento.getCidade());
+        contentValues.put(EstabelecimentoEntry.COLUMN_UF,
+                estabelecimento.getUf());
+        contentValues.put(EstabelecimentoEntry.COLUMN_CEP,
+                estabelecimento.getCep());
+        contentValues.put(EstabelecimentoEntry.COLUMN_TURNO_ATENDIMENTO,
+                estabelecimento.getTurnoAtendimento());
+        contentValues.put(EstabelecimentoEntry.COLUMN_LAT,
+                estabelecimento.getLatitude());
+        contentValues.put(EstabelecimentoEntry.COLUMN_LONG,
+                estabelecimento.getLongitude());
+        contentValues.put(EstabelecimentoEntry.COLUMN_TELEFONE,
+                estabelecimento.getTelefone());
+        contentValues.put(EstabelecimentoEntry.COLUMN_CNPJ,
+                estabelecimento.getCnpj());
+
+        return contentValues;
     }
 
 

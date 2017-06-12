@@ -2,6 +2,7 @@ package tech.linard.android.serviosdesade.activities;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -188,19 +190,18 @@ public class SearchFragment extends Fragment
 
 
     void startSearch(){
-        //TODO: VERIFICAR TAMANHO ÓTIMO DA PESQUISA (QUANTIDADE POR PESQUISA E DE TENTATIVAS)
-        for (int pagina = 0; pagina < 10; pagina++) {
-            String mURL = getEstabelecimentosURL(pagina);
+            String mURL = getEstabelecimentosURL(0);
             if (mURL != null) {
                 fetchEstabelecimentosFormNetwork(mURL);
             }
-        }
     }
 
     String getEstabelecimentosURL(int pagina){
         String url = null;
 
         String prmMunicipio = "";
+        EditText txtMunicipio  = (EditText) getActivity().findViewById(R.id.txt_municipio);
+        prmMunicipio = txtMunicipio.getText().toString().trim();
 
         String prmUf = null;
         if (spinnerEstado.getSelectedItemPosition() != 0){
@@ -222,8 +223,8 @@ public class SearchFragment extends Fragment
         } else {
             prmEspecialidade = "";
         }
-        String prmVinculoSUS = "";
 
+        String prmVinculoSUS = "";
         if (checkBoxVinculoSus.isChecked()) {
             prmVinculoSUS = "sim";
         } else {
@@ -231,7 +232,7 @@ public class SearchFragment extends Fragment
         }
 
         //TODO: store and recover this value on sharedPrefs
-        int quantidade = 30;
+        int quantidade = 100;
 
         String prmQuantidade = String.valueOf(quantidade);
         String prmPagina = String.valueOf(pagina);
@@ -248,6 +249,17 @@ public class SearchFragment extends Fragment
 
         // todo: Alterar API_KEY - Save value in gradle properties.
         uriBuilder.appendQueryParameter("api_key", String.valueOf(446));
+
+        // Salva as preferências da pesquisa. Estas informações serão utiliziadas
+        // na activity de resultados
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("municipio", prmMunicipio);
+        editor.putString("uf", prmUf);
+        editor.putString("categoria", prmCategoria);
+        editor.putString("especialidade", prmEspecialidade);
+        editor.putString("vinculoSus", prmVinculoSUS);
+        editor.commit();
 
         url = uriBuilder.toString();
 
@@ -355,6 +367,5 @@ public class SearchFragment extends Fragment
 
         return contentValues;
     }
-
 
 }

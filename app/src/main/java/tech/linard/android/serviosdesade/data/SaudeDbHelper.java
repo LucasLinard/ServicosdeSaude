@@ -62,7 +62,6 @@ public class SaudeDbHelper extends SQLiteOpenHelper {
                 " ON CONFLICT REPLACE" +
                 " );";
 
-
         db.execSQL(SQL_CREATE_ESTABELECIMENTO_TABLE);
     }
 

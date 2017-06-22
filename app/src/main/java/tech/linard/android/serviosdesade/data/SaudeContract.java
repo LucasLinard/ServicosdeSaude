@@ -15,9 +15,6 @@ public class SaudeContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
     public static final String PATH_ESTABELECIMENTO = "estabelecimento";
-    public static final String PATH_ESPECIALIDADE = "especialidade";
-    public static final String PATH_PROFISSIONAL = "profissional";
-    public static final String PATH_SERVICO = "servico";
 
 
     public static final class EstabelecimentoEntry implements BaseColumns {
@@ -35,7 +32,6 @@ public class SaudeContract {
         // Colunas
         // chave primaria da tabela
         public static final String COLUMN_COD_UNIDADE  =   "codUnidade";
-
         public static final String COLUMN_COD_CNES = "codCnes";
         public static final String COLUMN_COD_IBGE  =  "codIbge" ;
         public static final String COLUMN_NOME_FANTASIA =  "nomeFantasia";
@@ -72,72 +68,4 @@ public class SaudeContract {
         }
     }
 
-    public static final class EspecialidadeEntry implements BaseColumns {
-
-        public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_ESPECIALIDADE).build();
-
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ESPECIALIDADE;
-        public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ESPECIALIDADE;
-
-        // Table name
-        public static final String TABLE_NAME = "especialidade";
-
-        // Chave estrangeira tabela referencia COLUMN_COD_UNIDADE em estabelecimento
-        public static final String COLUMN_ESPECIALIDADE_ID = "especialidade_id";
-        public static final String COLUMN_COD_UNIDADE =  "codUnidade";
-        public static final String COLUMN_DESCRICAO_HABILITACAO =  "descricaoHabilitacao";
-        public static final String COLUMN_DESCRICAO_GRUPO =  "descricaoGrupo";
-
-        public static Uri buildEspecialidadeUri(long id) {
-            return ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-
-    }
-
-    public static final class ProfisionalEntry implements BaseColumns {
-        public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_PROFISSIONAL).build();
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PROFISSIONAL;
-        public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_PROFISSIONAL;
-
-        // Table name
-        public static final String TABLE_NAME = "profissional";
-
-        public static final String COLUMN_COD_UNIDADE =  "codUnidade";
-        public static final String COLUMN_DESCRICAO_ATIVIDADE_PROFISSIONAL
-                =  "descricaoAtividadeProfissional";
-        public static final String COLUMN_QUANTIDADE_PROFISSIONAIS = "quantidadeProfissionais";
-
-        public static Uri buildProfissionalUri(long id) {
-            return ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-    }
-
-    public static final class ServicoEntry implements BaseColumns {
-
-        public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_SERVICO).build();
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SERVICO;
-        public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SERVICO;
-
-        // Table name
-        public static final String TABLE_NAME = "servico";
-
-        public static final String COLUMN_COD_UNIDADE =  "codUnidade";
-        public static final String COLUMN_DESCRICAO_CLASSIFICACAO_SERVICO
-                =  "descricaoClassificacaoServico";
-        public static final String COLUMN_DESCRICAO
-                =  "descricao";
-
-        public static Uri buildServicoUri(long id) {
-            return ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-    }
 }
